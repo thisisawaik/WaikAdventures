@@ -1,9 +1,13 @@
+require("world")
+require("waik")
+
 function love.load()
-	waik = love.graphics.newImage("res/img/waik.png")
+	world.load()
+	waik.load()
 end
 
-function love.update()
-	
+function love.update(dt)
+	waik.update(dt)
 end
 
 function love.keypressed(key)
@@ -15,5 +19,10 @@ function love.keyreleased(key)
 end
 
 function love.draw()
-	love.graphics.draw(waik, 400, 300, math.rad(0), 1, 1, waik:getWidth() / 2, waik:getHeight() / 2, 0, 0)
+	world.draw()
+	waik.draw()
+	
+	love.graphics.setColor(0, 255, 0)
+	love.graphics.print(love.timer.getFPS(), 50, 50)
+	love.graphics.setColor(255, 255, 255)
 end
